@@ -15,8 +15,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'cloud_user_cred', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
-                        failOnError: true,
-                        continueOnError: false,
+                        failOnError: false,
+                        continueOnError: true,
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'stage',
@@ -47,8 +47,8 @@ pipeline {
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'cloud_user_cred', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
-                        failOnError: true,
-                        continueOnError: false,
+                        failOnError: false,
+                        continueOnError: true,
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'prod',
