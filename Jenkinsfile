@@ -13,10 +13,10 @@ pipeline {
                 branch 'master'
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'cloud_user_cred, usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'cloud_user_cred', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
-                        failOnError: true,
-                        continueOnError: false,
+                        failOnError: false,
+                        continueOnError: true,
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'stage',
@@ -43,12 +43,12 @@ pipeline {
                 branch 'master'
             }
             steps {
-                input 'iBHAIYA........Does the staging environment look OK?'
+                input 'Does the staging environment look OK?'
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'cloud_user_cred', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
-                        failOnError: true,
-                        continueOnError: false,
+                        failOnError: false,
+                        continueOnError: true,
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'prod',
